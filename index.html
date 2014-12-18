@@ -1,0 +1,933 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Developer Docs by expertory</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/expertory/docs">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/expertory/docs/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/expertory/docs/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Developer Docs</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/expertory">expertory</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="template-development" class="anchor" href="#template-development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Template Development</h1>
+
+<h2>
+<a id="what-is-an-expertory-template" class="anchor" href="#what-is-an-expertory-template" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is an Expertory Template?</h2>
+
+<p>Included with an <a href="http://www.expertory.com">Expertory</a> account is a <em>hosted store website</em>. This provides a front-end for your customers to use when browsing your live session listings, and video-on-demand products. A highly customizable template engine provides the web content for this front-end. Every Expertory <em>store</em> uses either a standard template, or a custom installed template. <strong>A template is basically a collection of html, css and other standard files you would find on a website.</strong></p>
+
+<h2>
+<a id="how-do-i-develop-a-template" class="anchor" href="#how-do-i-develop-a-template" aria-hidden="true"><span class="octicon octicon-link"></span></a>How do I develop a Template?</h2>
+
+<p>Go to the <a href="http://partners.expertory.com/signup">Expertory Partner Network</a> and sign up for a developer account. Here you can create and upload your template, and create a development store to test your template. The editing functions are quite basic, most developers create their template externally and just upload when done.</p>
+
+<h3>
+<a id="my-template-is-empty-how-do-i-get-started" class="anchor" href="#my-template-is-empty-how-do-i-get-started" aria-hidden="true"><span class="octicon octicon-link"></span></a>My template is empty, how do I get started?</h3>
+
+<p><a href="https://github.com/expertory/classic-template/archive/master.zip">Download a Zip</a> of the <a href="https://github.com/expertory/classic-template">sample classic template</a> and upload it to the <em>files</em> section of your template. This will load the template with the files from the sample template.</p>
+
+<h2>
+<a id="template-structure" class="anchor" href="#template-structure" aria-hidden="true"><span class="octicon octicon-link"></span></a>Template Structure</h2>
+
+<p>A template is made up of template files. These are regular html/liquid files, css, js etc. Templates which require server side rendering have a <code>.liquid</code> extension and use the <a href="https://github.com/Shopify/liquid/wiki">Liquid template engine</a>. </p>
+
+<h3>
+<a id="root-directory-" class="anchor" href="#root-directory-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Root directory <code>/</code>
+</h3>
+
+<p>The root directory contains all of the <code>.liquid</code> files. The names of the <code>.liquid</code> files must match the page to be rendered. See each page section for more information.</p>
+
+<p><strong>Standard template files:</strong></p>
+
+<ul>
+<li>base.liquid</li>
+</ul>
+
+<p>Pages:</p>
+
+<ul>
+<li>cancel-booking.liquid</li>
+<li>checkout-complete.liquid</li>
+<li>dashboard.liquid</li>
+<li>forgot-password.liquid</li>
+<li>home.liquid</li>
+<li>listing.liquid</li>
+<li>login.liquid</li>
+<li>materials.liquid</li>
+<li>package.liquid</li>
+<li>page.liquid</li>
+<li>profile.liquid</li>
+<li>reset-password.liquid</li>
+<li>search.liquid</li>
+<li>session-calendar.liquid</li>
+<li>video-search.liquid</li>
+<li>video.liquid</li>
+</ul>
+
+<p>Partials:</p>
+
+<ul>
+<li>custom-fields.liquid</li>
+<li>listing-card.liquid</li>
+<li>portfolio.liquid</li>
+<li>video-player-scripts.liquid</li>
+<li>video-player.liquid</li>
+<li>video-purchase-partial.liquid</li>
+</ul>
+
+<h3>
+<a id="assets-directory-assets" class="anchor" href="#assets-directory-assets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Assets directory <code>/assets</code>
+</h3>
+
+<p>This contains all of the files you want to reference from within your pages. Things like <code>.css</code>, <code>.less</code>, <code>.js</code>. These files must be in the <code>/assets</code> directory because this is where the <code>asset_url</code> filter references files.</p>
+
+<p>Within the <code>/assets</code> directory you can lay out your files anyway you like, and use sub-directories many levels deep.</p>
+
+<h4>
+<a id="less-files" class="anchor" href="#less-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>.less files</h4>
+
+<p><code>.less</code> files can be used within the <code>/assets</code> directory. They will be processed server side. The sample template uses bootstrap <code>.less</code> files which are compiled dynamically. This allows you to make changes to a few settings in the <code>variables.less</code> to have great impact on your site.</p>
+
+<h4>
+<a id="store-varables" class="anchor" href="#store-varables" aria-hidden="true"><span class="octicon octicon-link"></span></a>Store varables</h4>
+
+<p><code>.css</code> and <code>.less</code> files within the <code>/assets</code> directory can make use of liquid variables which are pumped into the file from settings related to the store. eg</p>
+
+<pre><code>// assets/style.css
+.header {
+    background-color: {{ store-header-color }};
+}
+</code></pre>
+
+<p>Current store varables are:</p>
+
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Info</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{{ store-header-color}}</td>
+<td>The hex color set in the Store Settings &gt; Header Color</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="liquid-markup" class="anchor" href="#liquid-markup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Liquid Markup</h2>
+
+<p>Expertory handles most of the standard liqiuid features including:</p>
+
+<ul>
+<li>Extend (layout / master page). eg <code>{% extends base %}</code> use the <code>base.liquid</code> as the layout/master page.</li>
+<li>Blocks defined in layout page. eg <code>{% block content %} Hello World {% endblock %}</code> fills the <em>content</em> block from the layout page.</li>
+<li>Include (partials / snippets). eg <code>{% include mypartial %}</code> inserts <code>mypartial.liquid</code> into the page.</li>
+<li>For loops.</li>
+<li>If conditions.</li>
+<li>Filters.</li>
+</ul>
+
+<p>More details here: <a href="https://github.com/Shopify/liquid/wiki/Liquid-for-Designers">Liquid for Designers</a></p>
+
+<h3>
+<a id="custom-filters" class="anchor" href="#custom-filters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Filters</h3>
+
+<p>Expertory has some custom filters which can be used when referencing variables using Liquid.</p>
+
+<p><strong>HTML Filters</strong></p>
+
+<ul>
+<li>
+<code>img_tag</code> - takes a URL (relative or absolute) and returns an image tag.</li>
+<li>
+<code>stylesheet_tag</code> - takes a URL (relative or absolute) and returns a link tag.</li>
+<li>
+<code>script_tag</code> - takes a URL (relative or absolute) and returns a script tag.</li>
+<li>
+<code>meta_tags</code> - takes the page name (eg 'home', 'listing' etc) and returns a series of meta tags used for SEO. This should be added to the <code>&lt;head&gt;</code>.</li>
+<li>
+<code>local_time</code> - takes a datetime in UTC and returns a <code>script</code> tag which renders the date as the browser's local time. <strong>Requires moment.js.</strong>
+</li>
+<li>
+<code>from_x</code> - takes a datetime in UTC and returns a <code>script</code> tag which renders the date as a time from now in a human readable format. eg 'in 5 days'.</li>
+</ul>
+
+<p><strong>URL Filters</strong></p>
+
+<ul>
+<li>
+<code>asset_url</code> - takes a relative reference to a file in the <code>/assets</code> folder and returns a public URL for the file. eg <code>{{ 'css/style.css' | asset_url }}</code> returns a public url for the <code>/assets/css/style.css</code> file. This URL may be served through a CDN for improved speed.</li>
+</ul>
+
+<blockquote>
+<p>Note: Filters can be chained together. A common usage is like this:<br>
+<code>{{ 'css/style.css' | asset_url | stylesheet_tag  }}</code> 
+which outputs:
+<code>&lt;link href='/cdn/1/assets/css/style.css' rel='stylesheet' type='text/css' media='all' /&gt;</code></p>
+</blockquote>
+
+<p><strong>Money Filters</strong></p>
+
+<ul>
+<li>
+<code>money</code> - takes a number and returns a formatted money using the store's currency symbol. eg '$25.00'. Zero is output as 'Free'.</li>
+<li>
+<code>money_with_currency</code> - same as <code>money</code> but appends the ISO currency code. eg '$25.00 USD'.</li>
+<li>
+<code>money_with_currency</code> - same as <code>money</code> but drops the currency symbol. eg "25.00'.</li>
+</ul>
+
+<p><strong>JSON Filters</strong></p>
+
+<ul>
+<li>
+<code>json</code> - takes the variable and outputs the JSON format. eg <code>'this is a string variable'</code> or <code>'{ prop: 'value' }'</code>
+</li>
+</ul>
+
+<blockquote>
+<p>JSON filter is mostly used for rendering a liquid variable inside a <code>&lt;script&gt;</code> tag to use in javascript. eg:</p>
+</blockquote>
+
+<pre><code>&lt;script&gt;
+    var listing = {{ listing | json }};
+&lt;/script&gt;
+</code></pre>
+
+<p>Outputs:</p>
+
+<pre><code>&lt;script&gt;
+    var listing = { name:'sample', price:25 };
+&lt;/script&gt;
+</code></pre>
+
+<h1>
+<a id="template-data" class="anchor" href="#template-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Template Data</h1>
+
+<p>The  following data objects are available on different template pages. </p>
+
+<h2>
+<a id="store" class="anchor" href="#store" aria-hidden="true"><span class="octicon octicon-link"></span></a>Store</h2>
+
+<p>This is an object to represent a store. It contains store information about what is the store's name, logo, header color, alias Url, subdomain Url and setting.</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>
+<em>integer</em> An unique integer identifier of a store</td>
+</tr>
+<tr>
+<td>name</td>
+<td>
+<em>string</em> The name of a store</td>
+</tr>
+<tr>
+<td>logo</td>
+<td>
+<em>string</em> The logo URL of a store</td>
+</tr>
+<tr>
+<td>headerColor</td>
+<td>
+<em>string</em> Header color of a store</td>
+</tr>
+<tr>
+<td>aliasUrl</td>
+<td>
+<em>string</em> Alias URL of a store</td>
+</tr>
+<tr>
+<td>subdomainUrl</td>
+<td>
+<em>string</em> Subdomain URL of a store</td>
+</tr>
+<tr>
+<td>setting</td>
+<td>
+<em>Object</em> Additional settings enabled for the store.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="team-member" class="anchor" href="#team-member" aria-hidden="true"><span class="octicon octicon-link"></span></a>Team Member</h2>
+
+<p>This is an object to represent a team member in a store.</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>
+<em>integer</em> An unique integer identifier of a team member</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>
+<em>string</em> An unique display name of a team member</td>
+</tr>
+<tr>
+<td>url</td>
+<td>
+<em>string</em> Relative URL of a team member's profile page</td>
+</tr>
+<tr>
+<td>profileDescription</td>
+<td>
+<em>string</em> Description of a team member's profile</td>
+</tr>
+<tr>
+<td>profileImageUrl</td>
+<td>
+<em>string</em> The URL of team member's profile image</td>
+</tr>
+<tr>
+<td>profileThumbUrl</td>
+<td>
+<em>string</em> The URL of team member's profile image thumbnail size 50px x 50px</td>
+</tr>
+<tr>
+<td>profileThumb32Url</td>
+<td>
+<em>string</em> The URL of team member's profile image thumbnail size 32px x 32px</td>
+</tr>
+<tr>
+<td>country</td>
+<td>
+<em>string</em> The name of a team member's country</td>
+</tr>
+<tr>
+<td>qualificationsHtml</td>
+<td>
+<em>string</em> Qualification that a team member hold. It contains html content.</td>
+</tr>
+<tr>
+<td>location</td>
+<td>
+<em>string</em> Location of a team member</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="session" class="anchor" href="#session" aria-hidden="true"><span class="octicon octicon-link"></span></a>Session</h2>
+
+<p>This is an object to represent current user's session. FirstName, LastName, DisplayName and ProfileImage are only shown when a user is logged in.</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>loggedIn</td>
+<td>
+<em>boolean</em> Login status of an user. It is true if an user is already logged in</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>
+<em>string</em> First name of an user. It is null if an user is not logged in</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>
+<em>string</em> Last name of an user. It is null if an user is not logged in</td>
+</tr>
+<tr>
+<td>displayName</td>
+<td>
+<em>string</em> An unique display name of an user. It is null if an user is not logged in</td>
+</tr>
+<tr>
+<td>profileImage</td>
+<td>
+<em>string</em> The URL of an user's profile image. It is null if an user is not logged in</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="listing" class="anchor" href="#listing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Listing</h2>
+
+<p>This is an object to represent a live session listing. It represents a single class/consultation for a specific duration and price.</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>
+<em>integer</em> An unique integer identifier of a listing</td>
+</tr>
+<tr>
+<td>title</td>
+<td>
+<em>string</em> A title of a listing</td>
+</tr>
+<tr>
+<td>smallImageUrl</td>
+<td>
+<em>string</em> The URL of a listing image size 220px x 165px</td>
+</tr>
+<tr>
+<td>bigImageUrl</td>
+<td>
+<em>string</em> The URL of a listing image size 360px x 270px</td>
+</tr>
+<tr>
+<td>price</td>
+<td>
+<em>integer</em> Price of a listing in dollar per duration</td>
+</tr>
+<tr>
+<td>duration</td>
+<td>
+<em>integer</em> Duration of a listing</td>
+</tr>
+<tr>
+<td>shortDescription</td>
+<td>
+<em>string</em> Short description of a listing</td>
+</tr>
+<tr>
+<td>descriptionHtml</td>
+<td>
+<em>string</em> Description of a listing. It contains html content.</td>
+</tr>
+<tr>
+<td>prerequisiteHtml</td>
+<td>
+<em>string</em> A listing is required to be taken before taking a listing. It contains html content</td>
+</tr>
+<tr>
+<td>url</td>
+<td>
+<em>string</em> Relative URL of a listing</td>
+</tr>
+<tr>
+<td>tags</td>
+<td><em>string</em></td>
+</tr>
+<tr>
+<td>availability</td>
+<td>
+<em>boolean</em> Availability of a listing</td>
+</tr>
+<tr>
+<td>materials</td>
+<td>
+<em>Array of Material objects</em> A list of listing materials</td>
+</tr>
+<tr>
+<td>portfolios</td>
+<td>
+<em>Portfolio object</em> A portfolio for the listing</td>
+</tr>
+<tr>
+<td>teamMember</td>
+<td>
+<em>Team Member object</em> Details of a team member providing a listing</td>
+</tr>
+<tr>
+<td>category</td>
+<td>
+<em>string</em> The name of category that a listing is classified</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="material" class="anchor" href="#material" aria-hidden="true"><span class="octicon octicon-link"></span></a>Material</h2>
+
+<p>This is an object to represent a material attached to a listing. eg worksheet or file download.</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>
+<em>integer</em> An unique integer identifier of a material</td>
+</tr>
+<tr>
+<td>fileName</td>
+<td>
+<em>string</em> Actual file name of a material</td>
+</tr>
+<tr>
+<td>name</td>
+<td>
+<em>string</em> The name of a material</td>
+</tr>
+<tr>
+<td>description</td>
+<td>
+<em>string</em> Description of a material</td>
+</tr>
+<tr>
+<td>downloadUrl</td>
+<td>
+<em>string</em> Download URL of a material. Download URL is only provided when an user booked a listing</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="paging-information" class="anchor" href="#paging-information" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paging Information</h2>
+
+<p>This is an object to represent paging information for the current result set.</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>number</td>
+<td>
+<em>integer</em> Current page number</td>
+</tr>
+<tr>
+<td>size</td>
+<td>
+<em>integer</em> The number of results to be returned per page</td>
+</tr>
+<tr>
+<td>totalResults</td>
+<td>
+<em>integer</em> The total number of results</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="portfolio" class="anchor" href="#portfolio" aria-hidden="true"><span class="octicon octicon-link"></span></a>Portfolio</h2>
+
+<p>This is an object to represent a portfolio item of a store or a team member.</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>
+<em>integer</em> An unique integer identifier of a portfolio</td>
+</tr>
+<tr>
+<td>sequence</td>
+<td>
+<em>integer</em> Sequence of portfolio</td>
+</tr>
+<tr>
+<td>portfolioAsset</td>
+<td><em>PortfolioAsset Object</em></td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="portfolio-asset" class="anchor" href="#portfolio-asset" aria-hidden="true"><span class="octicon octicon-link"></span></a>Portfolio Asset</h3>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>
+<em>integer</em> An unique integer identifier of a portfolio asset</td>
+</tr>
+<tr>
+<td>assetType</td>
+<td>
+<em>integer</em> A type of an asset (1: Video, 2: Document and 3: Image)</td>
+</tr>
+<tr>
+<td>assetTypeName</td>
+<td>
+<em>string</em> The name of an asset (none, Video, Document and Image)</td>
+</tr>
+<tr>
+<td>imageUrl</td>
+<td>
+<em>string</em> Asset's image UrlWhen an asset type is image, this field is set</td>
+</tr>
+<tr>
+<td>imageThumbUrl</td>
+<td>
+<em>string</em> Asset's image thumb UrlWhen an asset type is image, this field is set</td>
+</tr>
+<tr>
+<td>videoUrl</td>
+<td>
+<em>string</em> Asset's video UrlWhen an asset type is video, this field is set</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>
+<em>string</em> Explain about what a document is. When an asset type is document, this field is set</td>
+</tr>
+<tr>
+<td>documnetUrl</td>
+<td>
+<em>string</em> Asset's document Url. When an asset type is document, this field is set</td>
+</tr>
+<tr>
+<td>documentThumbUrl</td>
+<td>
+<em>string</em> Asset's document thumb Url. When an asset type is document, this field is set</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<a id="template-pages" class="anchor" href="#template-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Template Pages</h1>
+
+<p>This outlines each page in an Expertory store and the properties available to the template.</p>
+
+<blockquote>
+<p>To view the properties available on a page add <code>.json</code> to the end of the page you are requesting. eg <a href="http://yourstore.expertory.com/.json">http://yourstore.expertory.com/.json</a> .
+This can also be used as an API for retrieving data.</p>
+</blockquote>
+
+<h2>
+<a id="listing-1" class="anchor" href="#listing-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Listing</h2>
+
+<p><code>listing.liquid</code></p>
+
+<p>Contains a single listing provided by a store.</p>
+
+<p>Http Method: <code>GET</code></p>
+
+<p>Request URL Pattern: <code>/{category}/{name}/{id}</code></p>
+
+<p><code>{category}</code>: the name of a category (url safe)
+<code>{name}</code>: the name of a listing (url safe)
+<code>{id}</code>: A unique integer identifier of a listing</p>
+
+<blockquote>
+<p><code>{category}</code> and <code>{name}</code> are not validated and can essentially contain any string. They are part of the URL for SEO purposes.</p>
+</blockquote>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>store</td>
+<td>
+<em>Store Object</em> Store basic details providing a listing</td>
+</tr>
+<tr>
+<td>session</td>
+<td>
+<em>Session Object</em> Current user's details</td>
+</tr>
+<tr>
+<td>listing</td>
+<td>
+<em>Listing Object</em> the listing</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="store-landing" class="anchor" href="#store-landing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Store Landing</h2>
+
+<p><code>home.liquid</code></p>
+
+<p>The index / home page of a store.</p>
+
+<p>Http Method: <code>GET</code></p>
+
+<p>Url Pattern: <code>/</code></p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>store</td>
+<td>
+<em>Store Object</em> Store basic details</td>
+</tr>
+<tr>
+<td>session</td>
+<td>
+<em>Session Object</em> Current user's details</td>
+</tr>
+<tr>
+<td>banner</td>
+<td>
+<em>string</em> The URL of a store's banner image</td>
+</tr>
+<tr>
+<td>about</td>
+<td>
+<em>string</em> Explanation of a store</td>
+</tr>
+<tr>
+<td>portfolios</td>
+<td>
+<em>Array of Portfolio objects</em> A list of portfolio items of a store</td>
+</tr>
+<tr>
+<td>listings</td>
+<td>
+<em>Array of Listing objects</em> A list of live session listings provided by a store</td>
+</tr>
+<tr>
+<td>teamMembers</td>
+<td>
+<em>Array of TeamMember objects</em> A list of team members belonging to a store</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="team-member-profile" class="anchor" href="#team-member-profile" aria-hidden="true"><span class="octicon octicon-link"></span></a>Team Member Profile</h2>
+
+<p><code>profile.liquid</code></p>
+
+<p>Team member's profile page.</p>
+
+<p>Http Method: <code>GET</code></p>
+
+<p>Url Pattern:  <code>/{displayname}</code></p>
+
+<p><code>{ displayname }</code>: an unique display name of a team member</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>store</td>
+<td>
+<em>Store Object</em> Store basic details</td>
+</tr>
+<tr>
+<td>session</td>
+<td>
+<em>Session Object</em> Current user's details</td>
+</tr>
+<tr>
+<td>teamMember</td>
+<td>
+<em>Team Member object</em> Details of a team member</td>
+</tr>
+<tr>
+<td>listings</td>
+<td>
+<em>Array of Listing objects</em> A list of live session listings provided by a team member</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="search-results" class="anchor" href="#search-results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Search Results</h2>
+
+<p><code>search.liquid</code></p>
+
+<p>Search results page</p>
+
+<p>Http Method: <code>GET</code></p>
+
+<p>Url Patterns:  </p>
+
+<ul>
+<li><code>/search/{query}?page={number}</code></li>
+<li><code>/search?query={query}&amp;page={number}</code></li>
+</ul>
+
+<p><code>{query}</code>: keyword used to search listings
+<code>{number: integer)</code>: page number (if page number is not set, it returns the first page of the results)</p>
+
+<table>
+<thead>
+<tr>
+<th>Attributes</th>
+<th>---</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>store</td>
+<td>
+<em>Store Object</em> Store basic details</td>
+</tr>
+<tr>
+<td>session</td>
+<td>
+<em>Session Object</em> Current user's details</td>
+</tr>
+<tr>
+<td>search</td>
+<td>
+<em>Object</em> <code>{query: 'query text' }</code>
+</td>
+</tr>
+<tr>
+<td>listings</td>
+<td>
+<em>Array of Listing objects</em> A list of listings in a category</td>
+</tr>
+<tr>
+<td>page</td>
+<td>
+<em>Page Object</em> Current page's details</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="checkout-complete" class="anchor" href="#checkout-complete" aria-hidden="true"><span class="octicon octicon-link"></span></a>Checkout Complete</h2>
+
+<p><code>checkout-complete.liquid</code></p>
+
+<h2>
+<a id="customer-dashboard" class="anchor" href="#customer-dashboard" aria-hidden="true"><span class="octicon octicon-link"></span></a>Customer Dashboard</h2>
+
+<p><code>dashboard.liquid</code></p>
+
+<h2>
+<a id="listing-materials" class="anchor" href="#listing-materials" aria-hidden="true"><span class="octicon octicon-link"></span></a>Listing Materials</h2>
+
+<p><code>materials.liquid</code></p>
+
+<h2>
+<a id="login" class="anchor" href="#login" aria-hidden="true"><span class="octicon octicon-link"></span></a>Login</h2>
+
+<p><code>login.liquid</code></p>
+
+<h2>
+<a id="forgot-password" class="anchor" href="#forgot-password" aria-hidden="true"><span class="octicon octicon-link"></span></a>Forgot Password</h2>
+
+<p><code>forgot-password.liquid</code></p>
+
+<h2>
+<a id="reset-password" class="anchor" href="#reset-password" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reset Password</h2>
+
+<p><code>reset-password.liquid</code></p>
+
+<h2>
+<a id="package" class="anchor" href="#package" aria-hidden="true"><span class="octicon octicon-link"></span></a>Package</h2>
+
+<p><code>package.liquid</code></p>
+
+<h2>
+<a id="custom-page" class="anchor" href="#custom-page" aria-hidden="true"><span class="octicon octicon-link"></span></a>Custom Page</h2>
+
+<p><code>page.liquid</code></p>
+
+<h2>
+<a id="video-search" class="anchor" href="#video-search" aria-hidden="true"><span class="octicon octicon-link"></span></a>Video Search</h2>
+
+<p><code>video-search.liquid</code></p>
+
+<h2>
+<a id="session-add-to-calendar" class="anchor" href="#session-add-to-calendar" aria-hidden="true"><span class="octicon octicon-link"></span></a>Session add to calendar</h2>
+
+<p><code>session-calendar.liquid</code></p>
+
+<h2>
+<a id="cancel-booking" class="anchor" href="#cancel-booking" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cancel Booking</h2>
+
+<p><code>cancel-booking.liquid</code></p>
+
+<h2>
+<a id="video-on-demand" class="anchor" href="#video-on-demand" aria-hidden="true"><span class="octicon octicon-link"></span></a>Video on demand</h2>
+
+<p><code>video.liquid</code></p>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
