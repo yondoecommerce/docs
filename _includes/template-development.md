@@ -1,3 +1,5 @@
+{% raw %}
+
 # Template Development #
 
 ## What is an Expertory Template? ##
@@ -369,3 +371,5 @@ Url Patterns:
 
 ## Video on demand
 `video.liquid`
+
+{% endraw %}
