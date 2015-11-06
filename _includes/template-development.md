@@ -2,8 +2,8 @@
 
 # Template Development #
 
-## What is an Yondo Template? ##
-Included with an [Yondo](http://www.yondo.com) account is a *hosted store website*. This provides a front-end for your customers to use when browsing your live session listings, and video-on-demand products. A highly customizable template engine provides the web content for this front-end. Every Yondo *store* uses either a standard template, or a custom installed template. **A template is basically a collection of html, css and other standard files you would find on a website.**
+## What is a Yondo Template? ##
+Included with a [Yondo](http://www.yondo.com) account is a *hosted store website*. This provides a front-end for your customers to use when browsing your live session listings, and video-on-demand products. A highly customizable template engine provides the web content for this front-end. Every Yondo *store* uses either a standard template, or a custom installed template. **A template is basically a collection of html, css and other standard files you would find on a website.**
 
 ## How do I develop a Template? ##
 Go to the [Yondo Partner Network](http://partners.yondo.com/signup) and sign up for a developer account. Here you can create and upload your template, and create a development store to test your template. The editing functions are quite basic, most developers create their template externally and just upload when done.
@@ -245,7 +245,7 @@ This is an object to represent a portfolio item of a store or a team member.
 
 # Template Pages
 
-This outlines each page in an Yondo store and the properties available to the template.
+This outlines each page in a Yondo store and the properties available to the template.
 
 > To view the properties available on a page add `.json` to the end of the page you are requesting. eg http://yourstore.yondo.com/.json .
 > This can also be used as an API for retrieving data.
