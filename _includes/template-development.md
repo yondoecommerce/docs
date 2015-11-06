@@ -2,14 +2,14 @@
 
 # Template Development #
 
-## What is an Expertory Template? ##
-Included with an [Expertory](http://www.expertory.com) account is a *hosted store website*. This provides a front-end for your customers to use when browsing your live session listings, and video-on-demand products. A highly customizable template engine provides the web content for this front-end. Every Expertory *store* uses either a standard template, or a custom installed template. **A template is basically a collection of html, css and other standard files you would find on a website.**
+## What is an Yondo Template? ##
+Included with an [Yondo](http://www.yondo.com) account is a *hosted store website*. This provides a front-end for your customers to use when browsing your live session listings, and video-on-demand products. A highly customizable template engine provides the web content for this front-end. Every Yondo *store* uses either a standard template, or a custom installed template. **A template is basically a collection of html, css and other standard files you would find on a website.**
 
 ## How do I develop a Template? ##
-Go to the [Expertory Partner Network](http://partners.expertory.com/signup) and sign up for a developer account. Here you can create and upload your template, and create a development store to test your template. The editing functions are quite basic, most developers create their template externally and just upload when done.
+Go to the [Yondo Partner Network](http://partners.yondo.com/signup) and sign up for a developer account. Here you can create and upload your template, and create a development store to test your template. The editing functions are quite basic, most developers create their template externally and just upload when done.
 
 ###My template is empty, how do I get started?###
-[Download a Zip](https://github.com/expertory/classic-template/archive/master.zip) of the [sample classic template](https://github.com/expertory/classic-template) and upload it to the *files* section of your template. This will load the template with the files from the sample template.
+[Download a Zip](https://github.com/yondoecommerce/classic-template/archive/master.zip) of the [sample classic template](https://github.com/yondoecommerce/classic-template) and upload it to the *files* section of your template. This will load the template with the files from the sample template.
 
 ## Template Structure ##
 A template is made up of template files. These are regular html/liquid files, css, js etc. Templates which require server side rendering have a `.liquid` extension and use the [Liquid template engine](https://github.com/Shopify/liquid/wiki). 
@@ -73,7 +73,7 @@ Current store varables are:
 
 
 ## Liquid Markup ##
-Expertory handles most of the standard liqiuid features including:
+Yondo handles most of the standard liqiuid features including:
 
 * Extend (layout / master page). eg `{% extends base %}` use the `base.liquid` as the layout/master page.
 * Blocks defined in layout page. eg `{% block content %} Hello World {% endblock %}` fills the *content* block from the layout page.
@@ -85,7 +85,7 @@ Expertory handles most of the standard liqiuid features including:
 More details here: [Liquid for Designers](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers)
 
 ### Custom Filters ###
-Expertory has some custom filters which can be used when referencing variables using Liquid.
+Yondo has some custom filters which can be used when referencing variables using Liquid.
 
 **HTML Filters**
 
@@ -245,9 +245,9 @@ This is an object to represent a portfolio item of a store or a team member.
 
 # Template Pages
 
-This outlines each page in an Expertory store and the properties available to the template.
+This outlines each page in an Yondo store and the properties available to the template.
 
-> To view the properties available on a page add `.json` to the end of the page you are requesting. eg http://yourstore.expertory.com/.json .
+> To view the properties available on a page add `.json` to the end of the page you are requesting. eg http://yourstore.yondo.com/.json .
 > This can also be used as an API for retrieving data.
 
 ## Listing 
