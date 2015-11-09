@@ -380,7 +380,7 @@ This is an object to represent a webinar topic
 | duration | *integer* Duration of a webinar topic |
 | price | *integer* Price of a webinar topic in dollar. |
 | url | *string* The URL of a webinar topic |
-| upcoming | *Array of Webinar object* The list of webinar object |
+| upcoming | *Array of Webinar object* A list of webinar object |
 
 # Template Pages
 
@@ -409,6 +409,7 @@ Request URL Pattern: `/{category}/{name}/{id}`
 | store | *Store Object* Store basic details providing a listing |
 | session | *Session Object* Current user's details |
 | listing | *Listing Object* the listing |
+| upcommingAvaliability | *Array of string* A list of upcomming availability in UTC of a listing |
 
 ## Store Landing 
 `home.liquid`
@@ -429,6 +430,18 @@ Url Pattern: `/`
 | portfolios | *Array of Portfolio objects* A list of portfolio items of a store |
 | listings | *Array of Listing objects* A list of live session listings provided by a store |
 | teamMembers | *Array of TeamMember objects* A list of team members belonging to a store |
+| dateTime | *string* The current Date |
+| templatePage | *string* The name of template |
+| checkoutUrl | *string* The URL of checkout |
+| menus | *Menu object* |
+| siteInfo | *SiteInfo object* |
+| sections | *Sections object* |
+| banner | *string* The URL of banner image |
+| about | *string* Description of a store |
+| videos | *Array of Video objects* A list of all Videos |
+| popularVideos | *Array of Video objects* A list of popular Videos |
+| latestVideos | *Array of Video objects* A list of the latest uploaded videos |
+| webinarTopics | *Array of Webinar Topic objects* A list of Webinar Topics |
 
 ## Team Member Profile
 `profile.liquid`
@@ -448,6 +461,7 @@ Url Pattern:  `/{displayname}`
 | session | *Session Object* Current user's details |
 | teamMember | *Team Member object* Details of a team member |
 | listings | *Array of Listing objects* A list of live session listings provided by a team member |
+| portfolios | *Array of Portfolio objects* A list of portfolio of a team member |
 
 
 ## Search Results
@@ -459,10 +473,9 @@ Http Method: `GET`
 
 Url Patterns:  
 
-* `/search/{query}?page={number}`
 * `/search?query={query}&page={number}`
 
-`{query}`: keyword used to search listings
+`{query}`: keyword used to search listings, videos and webinar topics
 `{number: integer)`: page number (if page number is not set, it returns the first page of the results)
 
 
@@ -472,7 +485,9 @@ Url Patterns:
 | store | *Store Object* Store basic details |
 | session | *Session Object* Current user's details |
 | search | *Object* `{query: 'query text' }`
-| listings | *Array of Listing objects* A list of listings in a category |
+| listings | *Array of Listing objects* A list of listings search by a query |
+| videos | *Array of Video objects* A list of videos search by a query |
+| webinarTopics | *Array of Webinar Topic objects* A list of webinar topics search by a query |
 | page | *Page Object* Current page's details |
 
 ## Checkout Complete
@@ -508,7 +523,44 @@ Url Patterns:
 ## Cancel Booking
 `cancel-booking.liquid`
 
-## Video on demand
+## Video on demand 
 `video.liquid`
+
+Contains a single video provided by a store.
+
+Http Method: `GET`
+
+Request URL Pattern: `/video/{name}/{id}`
+
+`{name}`: the name of a video (url safe)
+`{id}`: A unique integer identifier of a video
+
+> `{name}` are not validated and can essentially contain any string. They are part of the URL for SEO purposes.
+
+| Attributes | --- |
+| --- | --- |
+| store | *Store Object* Store basic details providing a listing |
+| session | *Session Object* Current user's details |
+| video | *Video Object* the video |
+
+## Webinar
+`webinar-topic.liquid`
+
+Contains a single webinar topic provided by a store.
+
+Http Method: `GET`
+
+Request URL Pattern: `/webinar/{name}/{id}`
+
+`{name}`: the name of a webinar topic (url safe)
+`{id}`: A unique integer identifier of a video
+
+> `{name}` are not validated and can essentially contain any string. They are part of the URL for SEO purposes.
+
+| Attributes | --- |
+| --- | --- |
+| store | *Store Object* Store basic details providing a listing |
+| session | *Session Object* Current user's details |
+| webinarTopic | *Webinar Topic Object* the webinar topic |
 
 {% endraw %}
