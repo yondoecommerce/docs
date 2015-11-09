@@ -22,8 +22,9 @@ The root directory contains all of the `.liquid` files. The names of the `.liqui
 - base.liquid
 
 Pages:
-
+- base.liquid
 - cancel-booking.liquid
+- checkout.liquid
 - checkout-complete.liquid
 - dashboard.liquid
 - forgot-password.liquid
@@ -37,8 +38,11 @@ Pages:
 - reset-password.liquid
 - search.liquid
 - session-calendar.liquid
+- start.liquid
 - video-search.liquid
 - video.liquid
+- webinar-calendar.liquid
+- webinar-topic.liquid
 
 Partials:
 
@@ -48,6 +52,7 @@ Partials:
 - video-player-scripts.liquid
 - video-player.liquid
 - video-purchase-partial.liquid
+- webinar-topic-card.liquid
 
 ### Assets directory `/assets` ###
 This contains all of the files you want to reference from within your pages. Things like `.css`, `.less`, `.js`. These files must be in the `/assets` directory because this is where the `asset_url` filter references files.
@@ -139,9 +144,18 @@ This is an object to represent a store. It contains store information about what
 | id | *integer* An unique integer identifier of a store |
 | name | *string* The name of a store |
 | logo | *string* The logo URL of a store |
+| wideLogo | *string* The wide logo URL of a store |
+| selectedLogo | *string* The selected logo URL of a store |
+| selectedLogoClass | *string* The class name of selected logo of a store |
 | headerColor | *string* Header color of a store |
 | aliasUrl | *string* Alias URL of a store |
 | subdomainUrl | *string* Subdomain URL of a store |
+| currency | *string* The currency which a store uses for payment |
+| currencySymbol | *string* The currency symbol used as as shorthand for a currency's name   |
+| bannerImageUrl | *string* The banner image URL of a store |
+| sSOType | *string* The type of single sign on of a store |
+| webinarNoun | *string* The name of webinar that a store uses |
+| webinarNounPlural | *string* The name of webinar that a store uses |
 | setting | *Object* Additional settings enabled for the store. |
 
 ## Team Member
@@ -160,6 +174,10 @@ This is an object to represent a team member in a store.
 | country | *string* The name of a team member's country |
 | qualificationsHtml | *string* Qualification that a team member hold. It contains html content. |
 | location | *string* Location of a team member |
+| bannerImageUrl | *string* The banner image URL of a team member |
+| firstName | *string* The first name of a team member |
+| LastName | *string* The last name of a team member |
+| fullName | *string* The full name of a team member |
 
 ## Session
 
@@ -170,8 +188,10 @@ This is an object to represent current user's session. FirstName, LastName, Disp
 | loggedIn | *boolean* Login status of an user. It is true if an user is already logged in |
 | firstName | *string* First name of an user. It is null if an user is not logged in |
 | lastName | *string* Last name of an user. It is null if an user is not logged in |
-| displayName | *string* An unique display name of an user. It is null if an user is not logged in |
-| profileImage | *string* The URL of an user's profile image. It is null if an user is not logged in |
+| customerId | *integer* An unique integer identifier of an user |
+| email | *string* The email address of an user |
+| languages | *string* Languages of an user's browser |
+| dateFormat | *string* Date format of an user |
 
 ## Listing
 
@@ -181,20 +201,23 @@ This is an object to represent a live session listing. It represents a single cl
 | --- | --- |
 | id | *integer* An unique integer identifier of a listing |
 | title | *string* A title of a listing |
-| smallImageUrl | *string* The URL of a listing image size 220px x 165px |
-| bigImageUrl | *string* The URL of a listing image size 360px x 270px |
 | price | *integer* Price of a listing in dollar per duration |
 | duration | *integer* Duration of a listing |
-| shortDescription | *string* Short description of a listing |
 | descriptionHtml | *string* Description of a listing. It contains html content. |
 | prerequisiteHtml | *string* A listing is required to be taken before taking a listing. It contains html content |
 | url | *string* Relative URL of a listing |
-| tags | *string* |
 | availability | *boolean* Availability of a listing |
 | materials | *Array of Material objects* A list of listing materials |
 | portfolios | *Portfolio object* A portfolio for the listing |
 | teamMember | *Team Member object* Details of a team member providing a listing |
 | category | *string* The name of category that a listing is classified |
+| type | *string* The type of a listing to specifiy  |
+| image220Url | *string* The URL of a listing image size 220px x 165px |
+| image360Url | *string* The URL of a listing image size 360px x 270px |
+| image580Url | *string* The URL of a listing image size 580px x 435px |
+| rating | *string* |
+| reviews | *string* |
+| upcommingAvaliability | *Array of Date* A list of upcomming availability in UTC of a listing |
 
 ## Material
 
@@ -208,6 +231,15 @@ This is an object to represent a material attached to a listing. eg worksheet or
 | description | *string* Description of a material |
 | downloadUrl | *string* Download URL of a material. Download URL is only provided when an user booked a listing |
 
+## Menus
+
+This is an object to represent a custom page.
+
+| Attributes | --- |
+| --- | --- |
+| title | *string* The name of a page |
+| url | *string* The URL of a page |
+
 ## Paging Information
 
 This is an object to represent paging information for the current result set.
@@ -217,6 +249,9 @@ This is an object to represent paging information for the current result set.
 | number | *integer* Current page number |
 | size | *integer* The number of results to be returned per page |
 | totalResults | *integer* The total number of results |
+| totalPages | *integer* The total pages of results |
+| prev | *boolean* Availability of previous page |
+| next | *boolean* Availability of next page |
 
 ## Portfolio
 
@@ -241,6 +276,54 @@ This is an object to represent a portfolio item of a store or a team member.
 | comment | *string* Explain about what a document is. When an asset type is document, this field is set |
 | documnetUrl | *string* Asset's document Url. When an asset type is document, this field is set |
 | documentThumbUrl | *string* Asset's document thumb Url. When an asset type is document, this field is set |
+
+## Site Infomation
+
+This is an object to represent Yondo website details.
+
+| Attributes | --- |
+| --- | --- |
+| sitePath | *string* The URL of a store's dashboard |
+| alternateHomePage | *string* The URL of Yondo |
+| nakedDomain | *string* Naked domain of Yondo |
+| siteName | *string* The name of Yondo |
+| copyrightThe | *string* The copyright of Yondo |
+| stripeConnectClientId | *string* |
+
+## Section
+
+This is an object to represent a section provided by a store.
+
+| Attributes | --- |
+| --- | --- |
+| id | *string* An unique string identifier of a section |
+| heading | *string* The name of a section |
+
+## Video
+
+This is an object to represent a video in a store
+
+| Attributes | --- |
+| --- | --- |
+| id | *integer* An unique integer identifier of a video |
+| title | *string* A title of a video |
+| author | *string* The name of publisher or producer of a video |
+| uploadedDate | *string* Uploaded date of a video |
+| duration | *integer* Duration of a video |
+| descriptionHtml | *string* Description of a video. It contains html content. |
+| url | *string* Relative URL of a listing |
+| thumbnail220Url | *string* The URL of a video thumbnail image size 220px x 165px |
+| thumbnail360Url | *string* The URL of a video thumbnail image size 360px x 270px |
+| thumbnail720Url | *string* The URL of a video thumbnail image size 720px x 405px |
+| tags | *Array of string* A list of string to identify a video |
+| helpLink | *string* The URL of a help page containing information of rentals and subscriptions |
+| rentalPrice | *integer* Price of a video in dollar |
+| rentalPrice | *integer* Price of a video in dollar |
+| rentalPrice | *integer* Price of a video in dollar |
+| rentalPrice | *integer* Price of a video in dollar |
+| rentalPrice | *integer* Price of a video in dollar |
+| rentalPrice | *integer* Price of a video in dollar |
+
 
 
 # Template Pages
