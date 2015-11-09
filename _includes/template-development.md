@@ -317,14 +317,70 @@ This is an object to represent a video in a store
 | thumbnail720Url | *string* The URL of a video thumbnail image size 720px x 405px |
 | tags | *Array of string* A list of string to identify a video |
 | helpLink | *string* The URL of a help page containing information of rentals and subscriptions |
-| rentalPrice | *integer* Price of a video in dollar |
-| rentalPrice | *integer* Price of a video in dollar |
-| rentalPrice | *integer* Price of a video in dollar |
-| rentalPrice | *integer* Price of a video in dollar |
-| rentalPrice | *integer* Price of a video in dollar |
-| rentalPrice | *integer* Price of a video in dollar |
+| rentalPrice | *integer* Rental price of a video in dollar. It is null if a video is not available to rent. |
+| rentalPeriod | *integer* Rental period of a video. It is null if a video is not available to rent. |
+| rentalAvailable | *boolean* Availability of a video to rent |
+| rented | *boolean* Rental status of an user againt a video |
+| rentalExpire | *string* Expiry date of a rental video. It is null if a video is not rented. |
+| subscriptionPrice | *integer* Subscription price of a video in dollar. It is null if a video is not available to rent. |
+| subscriptionAvailable | *integer* Availability of a video to subscribe |
+| subscribed | *integer* Subscription status of an user |
+| subscriptionExpire | *integer* Expiry date of a subscription. It is null if a video is not rented. |
+| subscribeAllVideos | *integer* Availablity to subscibe all videos in a store |
+| assets | *Array of Video Asset object* A list of video assets |
+| availableToWatch | *boolean* Availability to watch a video |
+| previewVideoUrl360p | *integer* The URL of preview video |
+| fileAttachments | *Array of FileAttachment object* A list of FileAttachment objects |
 
+## Video Asset
 
+This is an object to represent a video asset.
+
+| Attributes | --- |
+| --- | --- |
+| guid | *string* An unique string identifier of a video asset |
+| url | *string* The URL of a video asset |
+| type | *string* The type of a video asset |
+
+## File Attachment
+
+This is an object to represent an attachment on a video
+
+| Attributes | --- |
+| --- | --- |
+| filename | *string* The name of an attached file |
+| title | *string* The title of an attachment  |
+| description | *string* Description of a an attachement |
+| downloadUrl | *string* Download URL of a an attachement |
+| icon | *string* The icon to represent an attachment |
+
+## Webinar 
+
+This is an object to represent a webinar 
+
+| Attributes | --- |
+| --- | --- |
+| id | *integer* An unique integer identifier of a webinar |
+| name | *string* A title of a webinar |
+| startTimeUtc | *string* The start time of a webinar in UTC |
+| maxAttendees | *integer* The maximum number of attendees for a webinar |
+| currentAttendees | *integer* The current number of attendees joining a webinar |
+
+## Webinar Topic
+
+This is an object to represent a webinar topic
+
+| Attributes | --- |
+| --- | --- |
+| id | *integer* An unique integer identifier of a webinar topic |
+| title | *string* A title of a webinar topic |
+| descriptionHtml | *string* Description of a webinar topic. It contains html content. |
+| imageSrc | *string* The URL of a webinar topic image |
+| imageThumbSrc | *string* The URL of a webinar topic thumbnail image |
+| duration | *integer* Duration of a webinar topic |
+| price | *integer* Price of a webinar topic in dollar. |
+| url | *string* The URL of a webinar topic |
+| upcoming | *Array of Webinar object* The list of webinar object |
 
 # Template Pages
 
