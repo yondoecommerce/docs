@@ -153,7 +153,7 @@ This is an object to represent a store. It contains store information about what
 | currency | *string* The currency which a store uses for payment |
 | currencySymbol | *string* The currency symbol used as as shorthand for a currency's name   |
 | bannerImageUrl | *string* The banner image URL of a store |
-| sSOType | *string* The type of single sign on of a store |
+| ssoType | *string* The type of single sign on of a store |
 | webinarNoun | *string* The name of webinar that a store uses |
 | webinarNounPlural | *string* The name of webinar that a store uses |
 | setting | *Object* Additional settings enabled for the store. |
@@ -215,8 +215,6 @@ This is an object to represent a live session listing. It represents a single cl
 | image220Url | *string* The URL of a listing image size 220px x 165px |
 | image360Url | *string* The URL of a listing image size 360px x 270px |
 | image580Url | *string* The URL of a listing image size 580px x 435px |
-| rating | *string* |
-| reviews | *string* |
 | upcommingAvaliability | *Array of Date* A list of upcomming availability in UTC of a listing |
 
 ## Material
@@ -231,14 +229,14 @@ This is an object to represent a material attached to a listing. eg worksheet or
 | description | *string* Description of a material |
 | downloadUrl | *string* Download URL of a material. Download URL is only provided when an user booked a listing |
 
-## Menus
+## Menu
 
 This is an object to represent a custom page.
 
 | Attributes | --- |
 | --- | --- |
-| title | *string* The name of a page |
-| url | *string* The URL of a page |
+| title | *string* The name of a custom page |
+| url | *string* The URL of a custom page |
 
 ## Paging Information
 
@@ -325,9 +323,9 @@ This is an object to represent a video in a store
 | subscriptionPrice | *integer* Subscription price of a video in dollar. It is null if a video is not available to rent. |
 | subscriptionAvailable | *integer* Availability of a video to subscribe |
 | subscribed | *integer* Subscription status of an user |
-| subscriptionExpire | *integer* Expiry date of a subscription. It is null if a video is not rented. |
+| subscriptionExpire | *integer* Expiry date of a subscription. It is null if a video is not subscribed. |
 | subscribeAllVideos | *integer* Availablity to subscibe all videos in a store |
-| assets | *Array of Video Asset object* A list of video assets |
+| assets | *Array of Video Asset object* A list of video assets. It is null if a video is not rented or subscribed |
 | availableToWatch | *boolean* Availability to watch a video |
 | previewVideoUrl360p | *integer* The URL of preview video |
 | fileAttachments | *Array of FileAttachment object* A list of FileAttachment objects |
@@ -340,7 +338,7 @@ This is an object to represent a video asset.
 | --- | --- |
 | guid | *string* An unique string identifier of a video asset |
 | url | *string* The URL of a video asset |
-| type | *string* The type of a video asset |
+| type | *string* The type of a video asset (144p Low Quality, 360p SD or 720p HD) |
 
 ## File Attachment
 
@@ -350,8 +348,8 @@ This is an object to represent an attachment on a video
 | --- | --- |
 | filename | *string* The name of an attached file |
 | title | *string* The title of an attachment  |
-| description | *string* Description of a an attachement |
-| downloadUrl | *string* Download URL of a an attachement |
+| description | *string* Description of an attachement |
+| downloadUrl | *string* Download URL of an attachement |
 | icon | *string* The icon to represent an attachment |
 
 ## Webinar 
