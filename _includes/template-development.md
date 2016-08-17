@@ -3,13 +3,13 @@
 # Template Development #
 
 ## What is a Yondo Template? ##
-Included with a [Yondo](http://www.yondo.com) account is a *hosted store website*. This provides a front-end for your customers to use when browsing your live session listings, and video-on-demand products. A highly customizable template engine provides the web content for this front-end. Every Yondo *store* uses either a standard template, or a custom installed template. **A template is basically a collection of html, css and other standard files you would find on a website.**
+Included with a [Yondo](http://www.yondo.com) account is a *hosted store website*. This provides a front-end for your customers to use when browsing your live session listings, video-on-demand and webinar products. A highly customizable template engine provides the web content for this front-end. Every Yondo *store* uses either a standard template, or a custom installed template. **A template is basically a collection of html, css and other standard files you would find on a website.**
 
 ## How do I develop a Template? ##
 Go to the [Yondo Partner Network](http://partners.yondo.com/signup) and sign up for a developer account. Here you can create and upload your template, and create a development store to test your template. The editing functions are quite basic, most developers create their template externally and just upload when done.
 
 ###My template is empty, how do I get started?###
-[Download a Zip](https://github.com/yondoecommerce/classic-template/archive/master.zip) of the [sample classic template](https://github.com/yondoecommerce/classic-template) and upload it to the *files* section of your template. This will load the template with the files from the sample template.
+Download a Zip of the [sample classic template](https://github.com/yondoecommerce/classic-template), [sample affinity template](https://github.com/yondoecommerce/affinity-template) or [sample circular template](https://github.com/yondoecommerce/classic-template), and upload it to the *files* section of your template. This will load the template with the files from the sample template.
 
 ## Template Structure ##
 A template is made up of template files. These are regular html/liquid files, css, js etc. Templates which require server side rendering have a `.liquid` extension and use the [Liquid template engine](https://github.com/Shopify/liquid/wiki). 
@@ -27,6 +27,7 @@ Pages:
 - checkout.liquid
 - checkout-complete.liquid
 - dashboard.liquid
+- embed-video.liquid
 - forgot-password.liquid
 - home.liquid
 - listing.liquid
@@ -35,12 +36,17 @@ Pages:
 - package.liquid
 - page.liquid
 - profile.liquid
+- recording.liquid
+- reschedule-booking.liquid
 - reset-password.liquid
 - search.liquid
+- session-archive.liquid
 - session-calendar.liquid
 - start.liquid
 - video-search.liquid
 - video.liquid
+- webinar-access.liquid
+- webinar-attachments.liquid
 - webinar-calendar.liquid
 - webinar-topic.liquid
 
@@ -49,9 +55,11 @@ Partials:
 - custom-fields.liquid
 - listing-card.liquid
 - portfolio.liquid
+- team-member-card.liquid
 - video-player-scripts.liquid
 - video-player.liquid
 - video-purchase-partial.liquid
+- video-tab.liquid
 - webinar-topic-card.liquid
 
 ### Assets directory `/assets` ###
@@ -100,6 +108,8 @@ Yondo has some custom filters which can be used when referencing variables using
 * `meta_tags` - takes the page name (eg 'home', 'listing' etc) and returns a series of meta tags used for SEO. This should be added to the `<head>`.
 * `local_time` - takes a datetime in UTC and returns a `script` tag which renders the date as the browser's local time. **Requires moment.js.**
 * `from_x` - takes a datetime in UTC and returns a `script` tag which renders the date as a time from now in a human readable format. eg 'in 5 days'.
+* `google_analytics_page_view_script_tag` - takes [Google Tracking Id](https://support.google.com/analytics/answer/1032385?hl=en) and and returns [Google Analytics script](https://developers.google.com/analytics/devguides/collection/analyticsjs/) tag.
+* `google_analytics_event_script_tag` - takes [Google Tracking Id](https://support.google.com/analytics/answer/1032385?hl=en) and return [Google Analytics event tracking script](https://developers.google.com/analytics/devguides/collection/analyticsjs/events) tag.
 
 **URL Filters**
 
@@ -156,7 +166,9 @@ This is an object to represent a store. It contains store information about what
 | ssoType | *string* The type of single sign on of a store |
 | webinarNoun | *string* The name of webinar that a store uses |
 | webinarNounPlural | *string* The name of webinar that a store uses |
-| setting | *Object* Additional settings enabled for the store. |
+| setting | *Object* Additional settings enabled for the store |
+| googleAnalyticsTrackingId | *string* Google analytics tracking Id of a store |
+| customTrackingScript | *string* custom javascript tracking code of a store |
 
 ## Team Member
 
@@ -185,7 +197,7 @@ This is an object to represent current user's session. FirstName, LastName, Disp
 
 | Attributes | --- |
 | --- | --- |
-| loggedIn | *boolean* Login status of an user. It is true if an user is already logged in |
+| isLoggedIn | *boolean* Login status of an user. It is true if an user is already logged in |
 | firstName | *string* First name of an user. It is null if an user is not logged in |
 | lastName | *string* Last name of an user. It is null if an user is not logged in |
 | customerId | *integer* An unique integer identifier of an user |
@@ -216,6 +228,7 @@ This is an object to represent a live session listing. It represents a single cl
 | image360Url | *string* The URL of a listing image size 360px x 270px |
 | image580Url | *string* The URL of a listing image size 580px x 435px |
 | upcommingAvaliability | *Array of Date* A list of upcomming availability in UTC of a listing |
+| published | *boolean* status of a listing |
 
 ## Material
 
@@ -329,6 +342,7 @@ This is an object to represent a video in a store
 | availableToWatch | *boolean* Availability to watch a video |
 | previewVideoUrl360p | *integer* The URL of preview video |
 | fileAttachments | *Array of FileAttachment object* A list of FileAttachment objects |
+| callToActionUrl | *string* Relative URL of a call to action |
 
 ## Video Asset
 
@@ -560,5 +574,29 @@ Request URL Pattern: `/webinar/{name}/{id}`
 | store | *Store Object* Store basic details providing a listing |
 | session | *Session Object* Current user's details |
 | webinarTopic | *Webinar Topic Object* the webinar topic |
+
+## Webinar Access
+`webinar-access.liquid`
+
+## Webinar Attachments
+`webinar-attachments.liquid`
+
+## Embed Video
+`embed-video.liquid`
+
+## Empty Base
+`empty-base.liquid`
+
+## Live Session Test
+`live-session-test.liquid`
+
+## Recording
+`recording.liquid`
+
+## Reschedule Booking
+`reschedule-booking.liquid`
+
+## Session Archive
+`session-archive.liquid`
 
 {% endraw %}
