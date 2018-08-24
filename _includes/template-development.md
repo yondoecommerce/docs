@@ -8,7 +8,7 @@ Included with a [Yondo](http://www.yondo.com) account is a *hosted store website
 ## How do I develop a Template? ##
 Go to the [Yondo Partner Network](http://partners.yondo.com/signup) and sign up for a developer account. Here you can create and upload your template, and create a development store to test your template. The editing functions are quite basic, most developers create their template externally and just upload when done.
 
-###My template is empty, how do I get started?###
+### My template is empty, how do I get started? ###
 Download a Zip of the [sample classic template](https://github.com/yondoecommerce/classic-template), [sample affinity template](https://github.com/yondoecommerce/affinity-template) or [sample circular template](https://github.com/yondoecommerce/classic-template), and upload it to the *files* section of your template. This will load the template with the files from the sample template.
 
 ## Template Structure ##
@@ -598,5 +598,281 @@ Request URL Pattern: `/webinar/{name}/{id}`
 
 ## Session Archive
 `session-archive.liquid`
+
+
+
+# Public API - JSON endpoints
+
+A JSON data feed is made available for all information shown in your Yondo store website. Use this to fetch data from external services. 
+
+Accessing the API is simple. Use a http `GET` request with `Accept: application/json` header to any public page on your Yondo store website. Alternatively, add `.json` suffix to any URL on your Yondo store website.
+
+> You can browse your store website and when you find the product which you want as JSON data, add `.json` to the end of the page you are requesting to view the JSON data in your browser. eg http://yourstore.yondo.com/.json .
+
+> Note: The JSON endpoint is currently restricted for Cross Origin domains. Speak to our support staff or dev team if you require access to the API from Cross Origin domains.
+
+## Resources
+
+### Products List (Home)
+`https://{subdomain}.yondo.com/`
+
+This lists all published Products and Team Members.
+
+Example Response (truncated):
+```javascript
+{
+	"listings": [
+		{
+			"duration": 30.0,
+			"availability": true,
+			"materials": [],
+			"portfolios": [],
+			"teamMember": {
+				"profileDescription": "... profile text",
+				"country": "United States of America",
+				"qualificationsHtml": "",
+				"location": "New York, United States of America",
+				"bannerImageUrl": null,
+				"bookingCountAllTime": 0,
+				"bookingCount30Days": 0,
+				"id": 1234,
+				"firstName": "John",
+				"lastName": "Smith",
+				"fullName": "John Smith",
+				"displayName": "jsmith",
+				"url": "/jsmith",
+				"profileImageUrl": "..image url",
+				"profileThumbUrl": "..image url",
+				"profileThumb32Url": "..image url"
+			},
+			"category": "Consulting",
+			"type": "Listing",
+			"id": 1234,
+			"title": "This is the session title",
+			"price": 400.0,
+			"image220Url": "..image url",
+			"image360Url": "..image url",
+			"image580Url": "..image url",
+			"url": "/consulting/This-is-the-session-title/1234",
+			"descriptionHtml": "... session description",
+			"prerequisiteHtml": null,
+			"published": true
+		}
+	],
+	"videos": [
+		{
+			"id": 1234,
+			"title": "Double Digit Growth Goals",
+			"descriptionHtml": "Lorem ipsum dolor sit amet",
+			"author": "John Smith",
+			"tags": [
+				"Growth",
+				"Goals"
+			],
+			"uploadedDate": "2018-03-15T18:19:09.517",
+			"duration": 360,
+			"thumbnail220Url": "..image url",
+			"thumbnail360Url": "..image url",
+			"thumbnail720Url": "..image url",
+			"url": "/video/double-digit-growth-goals/1234",
+			"rentalPrice": 5.0,
+			"rentalPeriod": 2,
+			"rentalAvailable": true,
+			"subscriptionPrice": 10.95,
+			"subscriptionAvailable": false,
+			"subscribeAllVideos": true,
+			"previewVideoUrl360p": null,
+			"fileAttachments": [],
+			"published": true,
+			"purchasePrice": null,
+			"purchaseAvailable": false,
+			"availablePurchaseOptions": [
+				"rent"
+			]
+		}
+	],
+	"webinarTopics": [
+		{
+			"id": 1234,
+			"title": "Growing Your Business",
+			"descriptionHtml": "Lorem ipsum dolor sit amet",
+			"imageSrc": "..image url",
+			"imageThumbSrc": "..image url",
+			"duration": 75,
+			"price": 0.00,
+			"url": "/webinar/growing-your-business/1234",
+			"upcoming": [
+				{
+					"id": 12345,
+					"name": "Tech Buzz",
+					"startTimeUtc": "2020-12-31T00:00:00Z",
+					"maxAttendees": 1000,
+					"currentAttendees": 2
+				}
+			],
+			"attachments": []
+		}
+	],
+	"teamMembers": [
+		{
+			"profileDescription": "... profile text",
+			"country": "United States of America",
+			"qualificationsHtml": "",
+			"location": "New York, United States of America",
+			"bannerImageUrl": null,
+			"bookingCountAllTime": 0,
+			"bookingCount30Days": 0,
+			"id": 1234,
+			"firstName": "John",
+			"lastName": "Smith",
+			"fullName": "John Smith",
+			"displayName": "jsmith",
+			"url": "/jsmith",
+			"profileImageUrl": "..image url",
+			"profileThumbUrl": "..image url",
+			"profileThumb32Url": "..image url"
+		}
+	]
+
+}
+```
+
+### 1-to-1 Session detail
+`https://{subdomain}.yondo.com/{category}/{title}/{id}`
+
+This gives detailed data for a single 1-to-1 listing. Get the URL from the `url` field from the object in the `listings` array from the Products List.
+
+
+
+Example Response (truncated):
+```javascript
+
+{
+	"listing": {
+		"duration": 30.0,
+		"availability": true,
+		"materials": [],
+		"portfolios": [],
+		"teamMember": {
+			"profileDescription": "... profile text",
+			"country": "United States of America",
+			"qualificationsHtml": "",
+			"location": "New York, United States of America",
+			"bannerImageUrl": null,
+			"bookingCountAllTime": 0,
+			"bookingCount30Days": 0,
+			"id": 1234,
+			"firstName": "John",
+			"lastName": "Smith",
+			"fullName": "John Smith",
+			"displayName": "jsmith",
+			"url": "/jsmith",
+			"profileImageUrl": "..image url",
+			"profileThumbUrl": "..image url",
+			"profileThumb32Url": "..image url"
+		},
+		"category": "Consulting",
+		"type": "Listing",
+		"id": 1234,
+		"title": "This is the session title",
+		"price": 400.0,
+		"image220Url": "..image url",
+		"image360Url": "..image url",
+		"image580Url": "..image url",
+		"url": "/consulting/This-is-the-session-title/1234",
+		"descriptionHtml": "... session description",
+		"prerequisiteHtml": null,
+		"published": true
+	},
+	"upcomingAvaliability": [
+		"2018-08-28T21:00:00Z",
+		"2018-08-28T21:30:00Z",
+		"2018-08-28T22:00:00Z",
+		"2018-08-28T22:30:00Z",
+		"2018-08-30T17:00:00Z"
+	]
+}
+
+```
+
+### Video On Demand detail
+`https://{subdomain}.yondo.com/video/{title}/{id}`
+
+This gives detailed data for a single video on demand title. Get the URL from the `url` field from the object in the `videos` array from the Products List.
+
+If the video is free to view without purchasing, the video asset URLs will also be included.
+
+Example Response (truncated):
+```javascript
+
+{
+	"video": {
+		"id": 1234,
+		"title": "Double Digit Growth Goals",
+		"descriptionHtml": "Lorem ipsum dolor sit amet",
+		"author": "John Smith",
+		"tags": [
+			"Growth",
+			"Goals"
+		],
+		"uploadedDate": "2018-03-15T18:19:09.517",
+		"duration": 360,
+		"thumbnail220Url": "..image url",
+		"thumbnail360Url": "..image url",
+		"thumbnail720Url": "..image url",
+		"url": "/video/double-digit-growth-goals/1234",
+		"rentalPrice": 5.0,
+		"rentalPeriod": 2,
+		"rentalAvailable": true,
+		"subscriptionPrice": 10.95,
+		"subscriptionAvailable": false,
+		"subscribeAllVideos": true,
+		"previewVideoUrl360p": null,
+		"fileAttachments": [],
+		"published": true,
+		"purchasePrice": null,
+		"purchaseAvailable": false,
+		"availablePurchaseOptions": [
+			"rent"
+		]
+	}
+}
+
+```
+
+### Webinar detail
+`https://{subdomain}.yondo.com/webinar/{title}/{id}`
+
+This gives detailed data for a single webinar topic. Get the URL from the `url` field from the object in the `webinarTopics` array from the Products List.
+
+Upcoming webinar sessions are listed in the `upcoming` field.
+
+Example Response (truncated):
+```javascript
+
+{
+	"webinarTopic": {
+		"id": 1234,
+			"title": "Growing Your Business",
+			"descriptionHtml": "Lorem ipsum dolor sit amet",
+			"imageSrc": "..image url",
+			"imageThumbSrc": "..image url",
+			"duration": 75,
+			"price": 0.00,
+			"url": "/webinar/growing-your-business/1234",
+			"upcoming": [
+				{
+					"id": 12345,
+					"name": "Tech Buzz",
+					"startTimeUtc": "2020-12-31T00:00:00Z",
+					"maxAttendees": 1000,
+					"currentAttendees": 2
+				}
+			],
+			"attachments": []
+	}
+}
+
+```
 
 {% endraw %}
