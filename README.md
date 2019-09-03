@@ -133,19 +133,19 @@ Yondo has some custom filters which can be used when referencing variables using
 * `json` - takes the variable and outputs the JSON format. eg `'this is a string variable'` or `'{ prop: 'value' }'`
 
 > JSON filter is mostly used for rendering a liquid variable inside a `<script>` tag to use in javascript. eg:
-`
+```html
 	<script>
 		var listing = {{ listing | json }};
 	</script>
-`
+```
 
 Outputs:
 
-`
+```html
     <script>
     	var listing = { name:'sample', price:25 };
     </script>
-`
+```
 
 # Template Data
 The  following data objects are available on different template pages. 
