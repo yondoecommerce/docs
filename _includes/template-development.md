@@ -512,14 +512,16 @@ Customer's personal dashboard showing purchases, upcoming/past bookings etc. Use
 
 Http Method: `GET`
 
-Url Pattern:  `/dashboard`
+Url:  `/dashboard`
+
+JSON Endpoint:  `/dashboard.json`
 
 | Attributes | --- |
 | --- | --- |
 | store | *Store Object* Store basic details |
 | session | *Session Object* Current user's details |
-| upcomingBookings | *Array of [Booking](#booking-object) objects* See Booking Object below |
-| pastBookings | *Array of [Booking](#booking-object) objects* See Booking Object below|
+| upcomingBookings | *Array of [Booking](#booking-object) objects* |
+| pastBookings | *Array of [Booking](#booking-object) objects* |
 | rentalVideos | *Array of Rental objects* |
 | subscription | *Subscription object* or `null` if user does not have a VOD subscription. |
 | packages | *Array of [Package Purchase](#package-purchase-object) objects* A list of packages which have been purchased by the user. |
@@ -556,6 +558,32 @@ Url Pattern:  `/dashboard`
 | isBooked | *boolean* |
 | listing | *[Listing](#listing) Object* |
 
+#### Liquid Example to redeem package item:
+```liquid
+{% for package in packages %}
+    Package: {{ package.packageName | escape }} purchased {{ package.purchaseDate | local_time }}
+    {% for item in package.items %}
+    	{% if item.isBooked == false %}
+	    {{ item.listing.image220Url | img_tag:item.listing.title }} 
+	    {{ item.listing.title | escape }}
+	    <button class="make-booking" data-listing="{{ item.listing.id }}" data-from-package="{{ package.id }}">Book Now</button>    
+    	{% endif %}
+    {% endfor %}
+{% endfor %}
+<script src="/bookingplugin.js"></script>
+````
+
+#### Javascript Example to redeem package when embedded on external site:
+```html
+<script src="https://yourstore.yondo.com/bookingplugin.js"></script>
+<script> 
+	// Listing ID and Package Purchase ID must be known. 
+	// eg AJAX GET request to https://yourstore.yondo.com/dashboard.json
+	var listingId = 1234;
+	var fromPackage = 5678;
+	bookingcontrol.ShowBookingCalendar(listingId, fromPackage);
+</script>
+````
 
 ## Listing Materials
 `materials.liquid`
