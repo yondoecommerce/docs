@@ -86,9 +86,9 @@ Current store varables are:
 ## Liquid Markup ##
 Yondo handles most of the standard liqiuid features including:
 
-* Extend (layout / master page). eg `{% extends base %}` use the `base.liquid` as the layout/master page.
-* Blocks defined in layout page. eg `{% block content %} Hello World {% endblock %}` fills the *content* block from the layout page.
-* Include (partials / snippets). eg `{% include mypartial %}` inserts `mypartial.liquid` into the page.
+* Extend (layout / master page). eg `{% raw %}{% extends base %}{% endraw %}` use the `base.liquid` as the layout/master page.
+* Blocks defined in layout page. eg `{% raw %}{% block content %} Hello World {% endblock %}{% endraw %}` fills the *content* block from the layout page.
+* Include (partials / snippets). eg `{% raw %}{% include mypartial %}{% endraw %}` inserts `mypartial.liquid` into the page.
 * For loops.
 * If conditions.
 * Filters.
@@ -111,10 +111,10 @@ Yondo has some custom filters which can be used when referencing variables using
 
 **URL Filters**
 
-* `asset_url` - takes a relative reference to a file in the `/assets` folder and returns a public URL for the file. eg `{{ 'css/style.css' | asset_url }}` returns a public url for the `/assets/css/style.css` file. This URL may be served through a CDN for improved speed.
+* `asset_url` - takes a relative reference to a file in the `/assets` folder and returns a public URL for the file. eg `{% raw %}{{ 'css/style.css' | asset_url }}{% endraw %}` returns a public url for the `/assets/css/style.css` file. This URL may be served through a CDN for improved speed.
 
 > Note: Filters can be chained together. A common usage is like this:  
-> `{{ 'css/style.css' | asset_url | stylesheet_tag  }}` 
+> `{% raw %}{{ 'css/style.css' | asset_url | stylesheet_tag  }}{% endraw %}` 
 > which outputs:
 > `<link href='/cdn/1/assets/css/style.css' rel='stylesheet' type='text/css' media='all' />`
 
@@ -129,10 +129,13 @@ Yondo has some custom filters which can be used when referencing variables using
 * `json` - takes the variable and outputs the JSON format. eg `'this is a string variable'` or `'{ prop: 'value' }'`
 
 > JSON filter is mostly used for rendering a liquid variable inside a `<script>` tag to use in javascript. eg:
-
+```
+{% raw %}
 	<script>
 		var listing = {{ listing | json }};
 	</script>
+{% endraw %}
+```
 Outputs:
 
     <script>
@@ -558,6 +561,7 @@ JSON Endpoint:  `/dashboard.json`
 
 #### Liquid Example to redeem package item:
 ```liquid
+{% raw %}
 {% for package in packages %}
     Package: {{ package.packageName | escape }} purchased {{ package.purchaseDate | local_time }}
     {% for item in package.items %}
@@ -569,6 +573,7 @@ JSON Endpoint:  `/dashboard.json`
     {% endfor %}
 {% endfor %}
 <script src="/bookingplugin.js"></script>
+{% endraw %}
 ````
 
 #### Javascript Example to redeem package when embedded on external site:
