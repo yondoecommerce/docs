@@ -1,7 +1,6 @@
 # Template Development
 
-1. TOC
-{:toc}
+
 
 {% raw %}
 ## What is a Yondo Template? ##
