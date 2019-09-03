@@ -399,6 +399,23 @@ This is an object to represent a webinar topic
 | url | *string* The URL of a webinar topic |
 | upcoming | *Array of Webinar object* A list of webinar object |
 
+## Package Object
+
+This is an object to represent a package of 1-to-1 sessions.
+
+| Attributes | --- |
+| --- | --- |
+| type | *string* "Package" |
+| id | *integer* |
+| title | *string* |
+| price | *decimal* |
+| listings | *Array of [Listing](#listing) Objects* |
+| image220Url | *decimal* |
+| image360Url | *decimal* |
+| image580Url | *decimal* |
+| descriptionHtml | *string* |
+| prerequisiteHtml | *string* |
+
 # Template Pages
 
 This outlines each page in a Yondo store and the properties available to the template.
@@ -609,6 +626,21 @@ JSON Endpoint:  `/dashboard.json`
 
 ## Package
 `package.liquid`
+
+Landing page for a Package of 1-to-1 sessions.
+
+Http Method: `GET`
+
+Url:  `/package/{package-name}/{id}` 
+
+JSON Endpoint:  `/package/{package-name}/{id}.json` {package-name} is included to be SEO friendly. It can be anything. Only the ID is used.
+
+| Attributes | --- |
+| --- | --- |
+| store | *Store Object* Store basic details |
+| session | *Session Object* Current user's details |
+| package | *[Package](#package-object) Object* |
+| page | *Page Object* Current page's details |
 
 ## Custom Page
 `page.liquid`
