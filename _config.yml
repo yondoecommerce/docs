@@ -1,3 +1,1 @@
-remote_theme: warrickhunter/just-the-docs
-kramdown:
-  parse_block_html: true
+pmarsceill/just-the-docs
