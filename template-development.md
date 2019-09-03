@@ -1,3 +1,8 @@
+---
+layout: null
+title: Yondo Store Developer Docs
+---
+
 # Template Development #
 
 ## What is a Yondo Template? ##
