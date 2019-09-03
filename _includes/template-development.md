@@ -518,11 +518,11 @@ Url Pattern:  `/dashboard`
 | --- | --- |
 | store | *Store Object* Store basic details |
 | session | *Session Object* Current user's details |
-| upcomingBookings | *Array of Booking objects* See Booking Object below |
-| pastBookings | *Array of Booking objects* See Booking Object below|
+| upcomingBookings | *Array of [Booking](#booking-object) objects* See Booking Object below |
+| pastBookings | *Array of [Booking](#booking-object) objects* See Booking Object below|
 | rentalVideos | *Array of Rental objects* |
 | subscription | *Subscription object* or `null` if user does not have a VOD subscription. |
-| packages | *Array of Package Purchase objects* A list of packages which have been purchased by the user. See Package Purchase Object Below. |
+| packages | *Array of [Package Purchase](#package-purchase-object) objects* A list of packages which have been purchased by the user. |
 | recordings | *Array of Recording objects* Recordings from 1-to-1 sessions. |
 | rentalPlaylists | *Array of Playlist Rental objects* A list of playlists which have been purchased/rented by the user. |
 | page | *Page Object* Current page's details |
@@ -532,7 +532,7 @@ Url Pattern:  `/dashboard`
 | --- | --- |
 | startSessionUrl | *string* URL to start the live 1-to-1 session |
 | id | *integer* Unique ID of the booking |
-| listing | *Listing Object* see [Listing](#listing) |
+| listing | *[Listing](#listing) Object* |
 | startTimeUTC | *string* |
 | cancelBookingUrl | *string* URL to initiate a cancellation. Can be `null` if cancellation not allowed. |
 | rescheduleBookingUrl | *string* URL to initiate a reschedule. Can be `null` if reschedule not allowed. |
@@ -554,7 +554,7 @@ Url Pattern:  `/dashboard`
 | --- | --- |
 | id | *integer* Unique ID of the Item in the Package Purchase |
 | isBooked | *boolean* |
-| listing | *Listing Object* see [Listing](#listing)|
+| listing | *[Listing](#listing) Object* |
 
 
 ## Listing Materials
