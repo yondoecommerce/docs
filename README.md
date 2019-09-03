@@ -535,6 +535,7 @@ JSON Endpoint:  `/dashboard.json`
 | page | *Page Object* Current page's details |
 
 ### Booking Object
+
 | Attributes | --- |
 | --- | --- |
 | startSessionUrl | *string* URL to start the live 1-to-1 session |
@@ -548,6 +549,7 @@ JSON Endpoint:  `/dashboard.json`
 | customFieldResults | *Object* Dictionary of custom field results. |
 
 ### Package Purchase Object
+
 | Attributes | --- |
 | --- | --- |
 | id | *integer* Unique ID of the Package Purchase |
@@ -557,6 +559,7 @@ JSON Endpoint:  `/dashboard.json`
 | items | *Array of Package Item Object* |
 
 ### Package Item Object
+
 | Attributes | --- |
 | --- | --- |
 | id | *integer* Unique ID of the Item in the Package Purchase |
@@ -564,6 +567,7 @@ JSON Endpoint:  `/dashboard.json`
 | listing | *[Listing](#listing) Object* |
 
 #### Liquid Example to redeem package item:
+
 ```liquid
 {% raw %}
 {% for package in packages %}
@@ -578,9 +582,10 @@ JSON Endpoint:  `/dashboard.json`
 {% endfor %}
 <script src="/bookingplugin.js"></script>
 {% endraw %}
-````
+```
 
 #### Javascript Example to redeem package when embedded on external site:
+
 ```html
 <script src="https://yourstore.yondo.com/bookingplugin.js"></script>
 <script> 
@@ -590,7 +595,7 @@ JSON Endpoint:  `/dashboard.json`
 	var fromPackage = 5678;
 	bookingcontrol.ShowBookingCalendar(listingId, fromPackage);
 </script>
-````
+```
 
 ## Listing Materials
 `materials.liquid`
