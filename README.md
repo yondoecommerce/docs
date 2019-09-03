@@ -1,3 +1,5 @@
+{% raw %}
+
 # Template Development #
 
 ## What is a Yondo Template? ##
@@ -136,7 +138,9 @@ Yondo has some custom filters which can be used when referencing variables using
 	</script>
 {% endraw %}
 `
+
 Outputs:
+
 `
     <script>
     	var listing = { name:'sample', price:25 };
@@ -954,3 +958,5 @@ Example Response (truncated):
 }
 
 ```
+
+{% endraw %}
