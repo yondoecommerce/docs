@@ -73,14 +73,14 @@ Within the `/assets` directory you can lay out your files anyway you like, and u
 
 	// assets/style.css
 	.header {
-		background-color: {{ store-header-color }};
+		background-color: {% raw %}{{ store-header-color }}{% endraw %};
 	}
 
 Current store varables are:
 
 |Variable                 	|Info                                                       	|
 |-------------------------	|-----------------------------------------------------------	|
-| {{ store-header-color}} 	| The hex color set in the Store Settings &gt; Header Color 	|
+| {% raw %}{{ store-header-color}}{% endraw %} 	| The hex color set in the Store Settings &gt; Header Color 	|
 
 
 ## Liquid Markup ##
