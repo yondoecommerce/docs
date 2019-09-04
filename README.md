@@ -1,7 +1,7 @@
+{% raw %}
+
 # Template Development
 
-
-{% raw %}
 ## What is a Yondo Template? ##
 Included with a [Yondo](http://www.yondo.com) account is a *hosted store website*. This provides a front-end for your customers to use when browsing your live session listings, video-on-demand and webinar products. A highly customizable template engine provides the web content for this front-end. Every Yondo *store* uses either a standard template, or a custom installed template. **A template is basically a collection of html, css and other standard files you would find on a website.**
 
