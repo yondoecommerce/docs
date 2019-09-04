@@ -1,1 +1,7 @@
 remote_theme: warrickhunter/just-the-docs
+
+title: Yondo Store Development
+baseurl: "/docs"
+url: "https://yondoecommerce.github.io"
+
+heading_anchors: true
